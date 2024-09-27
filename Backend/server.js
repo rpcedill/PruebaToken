@@ -94,7 +94,7 @@ app.post("/usarToken", async (req, res) => {
         valor: token,
         usuarioId: usuario.id,
         expiracion: {
-          [Op.gte]: new Date(),
+          [Op.gt]: new Date(),
         },
         estado: "SIN USAR",
       },
@@ -189,6 +189,7 @@ async function obtenerToken(user) {
       expiracion: {
         [Op.gt]: new Date(),
       },
+      estado: "SIN USAR",
     },
     order: [["createdAt", "DESC"]],
   });
